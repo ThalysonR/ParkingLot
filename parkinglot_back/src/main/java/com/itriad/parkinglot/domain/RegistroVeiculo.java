@@ -29,6 +29,5 @@ public class RegistroVeiculo {
     Veiculo veiculo;
     Date entrada;
     Date saida;
-    Integer permanencia;
     Double valorPago;
 }

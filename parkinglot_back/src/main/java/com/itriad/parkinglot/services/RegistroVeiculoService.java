@@ -38,11 +38,16 @@ public class RegistroVeiculoService {
 
         RegistroVeiculo registro = registroRepository.findRegistroWithActiveVeiculoByPlaca(placa);
         registro.setSaida(new Date());
+        registro.setValorPago(calculaValorAPagar(registro));
         return registro;
     }
 
-    public Double calculaValorAPagar(String placaVeiculo) {
-        RegistroVeiculo registro = registroRepository.findRegistroWithActiveVeiculoByPlaca(placaVeiculo);
+    public Double verificaValorAPagar(String placa) {
+        RegistroVeiculo registro = registroRepository.findRegistroWithActiveVeiculoByPlaca(placa);
+        return calculaValorAPagar(registro);
+    }
+
+    public Double calculaValorAPagar(RegistroVeiculo registro) {
         CalculoPreco cPreco = new RegraFDS();
         cPreco.link(new RegraSemanaManha())
             .link(new RegraSemanaTarde());
