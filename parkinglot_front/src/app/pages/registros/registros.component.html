@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+  <span>Registros</span>
+</mat-toolbar>
+<div class="parking-container">
+  <mat-form-field appearance="outline" class="busca-placa">
+      <input type="text" matInput placeholder="Insira a placa do carro" [formControl]="busca"/>
+    </mat-form-field>
+    <app-veiculo-card *ngFor="let veiculo of veiculosFiltro" [veiculo]="veiculo" class="v-margin clickable" (click)="teste(veiculo)"></app-veiculo-card>
+</div>
