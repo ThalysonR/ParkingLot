@@ -4,6 +4,8 @@ import java.util.Date;
 
 import com.itriad.parkinglot.domain.RegistroVeiculo;
 import com.itriad.parkinglot.domain.Veiculo;
+import com.itriad.parkinglot.dto.PeriodoDataDTO;
+import com.itriad.parkinglot.dto.RelatorioDTO;
 import com.itriad.parkinglot.repositories.RegistroVeiculoRepository;
 import com.itriad.parkinglot.services.calculoPreco.CalculoPreco;
 import com.itriad.parkinglot.services.calculoPreco.RegraFDS;
@@ -21,6 +23,13 @@ public class RegistroVeiculoService {
     @Autowired
     RegistroVeiculoRepository registroRepository;
 
+    private Double calculaValorAPagar(RegistroVeiculo registro) {
+        CalculoPreco cPreco = new RegraFDS();
+        cPreco.link(new RegraSemanaManha())
+            .link(new RegraSemanaTarde());
+        return cPreco.executaCalculo(registro.getEntrada(), new Date());
+    }
+
     public void registrarVeiculo(Veiculo veiculo) {
         RegistroVeiculo registro = new RegistroVeiculo();
         registro.setVeiculo(veiculo);
@@ -34,8 +43,6 @@ public class RegistroVeiculoService {
     }
 
     public RegistroVeiculo registrarSaidaVeiculo(String placa) {
-        // TODO Fazer validações
-
         RegistroVeiculo registro = registroRepository.findRegistroWithActiveVeiculoByPlaca(placa);
         registro.setSaida(new Date());
         registro.setValorPago(calculaValorAPagar(registro));
@@ -47,10 +54,13 @@ public class RegistroVeiculoService {
         return calculaValorAPagar(registro);
     }
 
-    public Double calculaValorAPagar(RegistroVeiculo registro) {
-        CalculoPreco cPreco = new RegraFDS();
-        cPreco.link(new RegraSemanaManha())
-            .link(new RegraSemanaTarde());
-        return cPreco.executaCalculo(registro.getEntrada(), new Date());
+    public RelatorioDTO buscaDadosRelatorio(PeriodoDataDTO periodo) {
+        final RelatorioDTO relatorio = new RelatorioDTO();
+        registroRepository.findBySaidaBetween(periodo.getInicio(), periodo.getFim())
+            .forEach((registro) -> {
+                relatorio.setNumeroCarros(relatorio.getNumeroCarros() + 1);
+                relatorio.setValorRecebido(relatorio.getValorRecebido() + registro.getValorPago());
+            });
+        return relatorio;
     }
 }

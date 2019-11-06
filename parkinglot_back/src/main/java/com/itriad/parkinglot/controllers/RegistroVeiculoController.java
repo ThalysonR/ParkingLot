@@ -2,6 +2,8 @@ package com.itriad.parkinglot.controllers;
 
 import com.itriad.parkinglot.domain.RegistroVeiculo;
 import com.itriad.parkinglot.domain.Veiculo;
+import com.itriad.parkinglot.dto.PeriodoDataDTO;
+import com.itriad.parkinglot.dto.RelatorioDTO;
 import com.itriad.parkinglot.services.RegistroVeiculoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,4 +35,10 @@ public class RegistroVeiculoController {
     public RegistroVeiculo registrarSaidaVeiculo(@RequestParam("placa") String placa) {
         return registroService.registrarSaidaVeiculo(placa);
     }
+
+    @GetMapping("relatorio")
+    public RelatorioDTO getMethodName(PeriodoDataDTO periodo) {
+        return registroService.buscaDadosRelatorio(periodo);
+    }
+    
 }
