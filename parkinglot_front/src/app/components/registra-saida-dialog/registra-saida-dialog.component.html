@@ -1,8 +1,8 @@
 <div><b>Placa: </b> {{ veiculo.placa | uppercase }}</div>
 <div><b>Modelo: </b> {{ veiculo.modelo | uppercase }}</div>
 <div><b>Cor: </b> {{ veiculo.cor | uppercase }}</div>
-<div><b>Valor a Pagar: </b> R$20,00</div>
+<div><b>Valor a Pagar: </b> {{ valor | currency:'BRL':'symbol-narrow':'1.2-2' }}</div>
 <div>
   <button class="mat-button" color="accent" (click)="onNoClick()">Cancelar</button>
-  <button class="mat-raised-button" color="primary">Registrar Saída</button>
+  <button class="mat-raised-button" color="primary" (click)="registrarSaida()">Registrar Saída</button>
 </div>

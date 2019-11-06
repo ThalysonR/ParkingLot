@@ -1,6 +1,8 @@
 package com.itriad.parkinglot.services;
 
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.itriad.parkinglot.domain.RegistroVeiculo;
 import com.itriad.parkinglot.domain.Veiculo;
@@ -29,8 +31,14 @@ public class RegistroVeiculoService {
         return cPreco.executaCalculo(registro.getEntrada(), new Date());
     }
 
+    public List<Veiculo> buscaVeiculosAtivos() {
+        return registroRepository.findRegistrosWithActiveVeiculos()
+            .stream().map((registro) -> registro.getVeiculo()).collect(Collectors.toList());
+    }
+
     public void registrarVeiculo(Veiculo veiculo) {
         RegistroVeiculo registro = new RegistroVeiculo();
+        veiculo.setPlaca(veiculo.getPlaca().toUpperCase());
         registro.setVeiculo(veiculo);
         registro.setEntrada(new Date());
 

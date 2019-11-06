@@ -1,3 +1,45 @@
 <mat-toolbar color="primary">
   <span>Novo Registro</span>
 </mat-toolbar>
+<div class="parking-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Insira as informações do veículo:</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="registro-form" #registroForm="ngForm" (ngSubmit)="registrarVeiculo()">
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Placa" name="placa" #placa="ngModel" required [(ngModel)]="veiculo.placa">
+          </mat-form-field>
+          <div *ngIf="placa.invalid && (placa.dirty || placa.touched)">
+            <mat-error *ngIf="placa.errors.required">
+              Placa é obrigatória.
+            </mat-error>
+          </div>
+        </div>
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Cor" name="cor" #cor="ngModel" required [(ngModel)]="veiculo.cor">
+          </mat-form-field>
+          <div *ngIf="cor.invalid && (cor.dirty || cor.touched)">
+              <mat-error *ngIf="cor.errors.required">
+                Cor é obrigatória.
+              </mat-error>
+            </div>
+        </div>
+        <div>
+          <mat-form-field>
+            <input type="text" matInput placeholder="Modelo" name="modelo" #modelo="ngModel" required [(ngModel)]="veiculo.modelo">
+          </mat-form-field>
+          <div *ngIf="modelo.invalid && (modelo.dirty || modelo.touched)">
+              <mat-error *ngIf="modelo.errors.required">
+                Modelo é obrigatório.
+              </mat-error>
+            </div>
+        </div>
+        <button mat-raised-button type="submit" [disabled]="registroForm.form.invalid" color="primary">Registrar</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

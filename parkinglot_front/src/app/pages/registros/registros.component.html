@@ -3,7 +3,13 @@
 </mat-toolbar>
 <div class="parking-container">
   <mat-form-field appearance="outline" class="busca-placa">
-      <input type="text" matInput placeholder="Insira a placa do carro" [formControl]="busca"/>
-    </mat-form-field>
-    <app-veiculo-card *ngFor="let veiculo of veiculosFiltro" [veiculo]="veiculo" class="v-margin clickable" (click)="teste(veiculo)"></app-veiculo-card>
+    <input type="text" matInput placeholder="Insira a placa do veículo" [formControl]="busca" />
+  </mat-form-field>
+  <ng-template [ngIf]="veiculosFiltro.length > 0" [ngIfElse]="vazio">
+    <app-veiculo-card *ngFor="let veiculo of veiculosFiltro" [veiculo]="veiculo" class="v-margin clickable"
+      (click)="dialogSaida(veiculo)"></app-veiculo-card>
+  </ng-template>
+  <ng-template #vazio>
+    <div>Nenhum veículo encontrado!</div>
+  </ng-template>
 </div>
