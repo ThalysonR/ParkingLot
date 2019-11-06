@@ -25,8 +25,7 @@ public class RegistroVeiculoService {
 
     private Double calculaValorAPagar(RegistroVeiculo registro) {
         CalculoPreco cPreco = new RegraFDS();
-        cPreco.link(new RegraSemanaManha())
-            .link(new RegraSemanaTarde());
+        cPreco.link(new RegraSemanaTarde()).link(new RegraSemanaManha());
         return cPreco.executaCalculo(registro.getEntrada(), new Date());
     }
 

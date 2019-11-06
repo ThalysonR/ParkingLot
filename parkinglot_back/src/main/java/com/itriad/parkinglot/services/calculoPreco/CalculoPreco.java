@@ -15,11 +15,8 @@ public abstract class CalculoPreco {
     protected abstract Double calcula(Date entrada, Date saida);
 
     public Double executaCalculo(Date entrada, Date saida) {
-        if (regraAtiva(entrada, saida)) {
-            return calcula(entrada, saida);
-        }
-        return proximo.executaCalculo(entrada, saida);
+        return this.regraAtiva(entrada, saida)
+            ? calcula(entrada, saida)
+            : proximo.executaCalculo(entrada, saida);
     }
-
-
 }

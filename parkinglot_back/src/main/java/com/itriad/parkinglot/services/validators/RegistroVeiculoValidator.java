@@ -18,9 +18,7 @@ public abstract class RegistroVeiculoValidator {
     protected abstract void valida(RegistroVeiculo registro);
 
     private void validaProximo(RegistroVeiculo registro) {
-        if (proximo == null) {
-            return;
-        }
-        proximo.valida(registro);
+        if (proximo != null)
+            proximo.valida(registro);
     }
 }
