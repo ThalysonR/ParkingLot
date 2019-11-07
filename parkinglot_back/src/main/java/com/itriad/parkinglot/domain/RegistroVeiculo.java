@@ -14,11 +14,15 @@ import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
 import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
 @Data
 @Entity
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@AllArgsConstructor
+@NoArgsConstructor
 public class RegistroVeiculo {
     @Id
     @GeneratedValue

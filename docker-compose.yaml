@@ -1,0 +1,14 @@
+version: '3'
+services:
+  backend:
+    image: 'maven:3-jdk-8'
+    volumes:
+     - ./parkinglot_back:/app/
+    command: mvn spring-boot:run
+    context: /app
+    ports:
+     - 8080:8080
+
+  front_builder:
+    image: 'node:lts-alpine'
+

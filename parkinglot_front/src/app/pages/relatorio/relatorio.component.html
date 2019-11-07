@@ -1,0 +1,34 @@
+<mat-toolbar color="primary">
+  <span>Relatorio</span>
+</mat-toolbar>
+<div class="parking-container">
+  <form class="row round-border" #relatorioForm="ngForm" (ngSubmit)="gerarRelatorio()">
+    <mat-form-field>
+      <input matInput [matDatepicker]="inicio" placeholder="Data de início" name="inicio" required #inputInicio="ngModel" [(ngModel)]="model.inicio" />
+      <mat-datepicker-toggle matSuffix [for]="inicio"></mat-datepicker-toggle>
+      <mat-datepicker #inicio></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="fim" placeholder="Data de fim" name="fim" required #inputFim="ngModel" [(ngModel)]="model.fim" />
+      <mat-datepicker-toggle matSuffix [for]="fim"></mat-datepicker-toggle>
+      <mat-datepicker #fim></mat-datepicker>
+    </mat-form-field>
+    <button mat-button type="submit" color="primary" [disabled]="relatorioForm.form.invalid">Gerar Relatório</button>
+  </form>
+  <div *ngIf="chartLabels.length > 0">
+    <canvas baseChart
+      [datasets]="numeroCarrosChartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="chartLegend"
+      [chartType]="chartType">
+    </canvas>
+    <canvas baseChart
+      [datasets]="valorRecebidoChartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="chartLegend"
+      [chartType]="chartType">
+    </canvas>
+  </div>
+</div>

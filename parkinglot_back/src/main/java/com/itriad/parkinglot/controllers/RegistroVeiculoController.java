@@ -45,7 +45,7 @@ public class RegistroVeiculoController {
     }
 
     @GetMapping("relatorio")
-    public RelatorioDTO getMethodName(PeriodoDataDTO periodo) {
+    public List<RelatorioDTO> buscaRelatorio(PeriodoDataDTO periodo) {
         return registroService.buscaDadosRelatorio(periodo);
     }
     

@@ -1,5 +1,6 @@
 package com.itriad.parkinglot.services;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -53,7 +54,7 @@ public class RegistroVeiculoService {
         RegistroVeiculo registro = registroRepository.findRegistroWithActiveVeiculoByPlaca(placa);
         registro.setSaida(new Date());
         registro.setValorPago(calculaValorAPagar(registro));
-        return registro;
+        return registroRepository.save(registro);
     }
 
     public Double verificaValorAPagar(String placa) {
@@ -61,13 +62,13 @@ public class RegistroVeiculoService {
         return calculaValorAPagar(registro);
     }
 
-    public RelatorioDTO buscaDadosRelatorio(PeriodoDataDTO periodo) {
-        final RelatorioDTO relatorio = new RelatorioDTO();
-        registroRepository.findBySaidaBetween(periodo.getInicio(), periodo.getFim())
-            .forEach((registro) -> {
-                relatorio.setNumeroCarros(relatorio.getNumeroCarros() + 1);
-                relatorio.setValorRecebido(relatorio.getValorRecebido() + registro.getValorPago());
-            });
-        return relatorio;
+    public List<RelatorioDTO> buscaDadosRelatorio(PeriodoDataDTO periodo) {
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(periodo.getFim());
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE, 59);
+
+        return registroRepository.generateReportBetween(periodo.getInicio(), cal.getTime());
     }
 }

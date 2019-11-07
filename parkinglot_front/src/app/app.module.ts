@@ -17,10 +17,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { ChartsModule } from 'ng2-charts';
 import { RegistrosComponent } from './pages/registros/registros.component';
 import { NovoRegistroComponent } from './pages/novo-registro/novo-registro.component';
 import { VeiculoCardComponent } from './components/veiculo-card/veiculo-card.component';
 import { RegistraSaidaDialogComponent } from './components/registra-saida-dialog/registra-saida-dialog.component';
+import { RelatorioComponent } from './pages/relatorio/relatorio.component';
 
 registerLocaleData(br, 'pt-BR');
 
@@ -31,7 +36,8 @@ registerLocaleData(br, 'pt-BR');
     RegistrosComponent,
     NovoRegistroComponent,
     VeiculoCardComponent,
-    RegistraSaidaDialogComponent
+    RegistraSaidaDialogComponent,
+    RelatorioComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,10 +52,15 @@ registerLocaleData(br, 'pt-BR');
     FormsModule,
     ReactiveFormsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSnackBarModule,
+    MatDatepickerModule,
+    MatMomentDateModule,
+    ChartsModule
   ],
   providers: [
-    { provide: LOCALE_ID, useValue: 'pt-BR' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: MAT_SNACK_BAR_DEFAULT_OPTIONS, useValue: { duration: 2500 } }
   ],
   bootstrap: [AppComponent],
   entryComponents: [RegistraSaidaDialogComponent]
