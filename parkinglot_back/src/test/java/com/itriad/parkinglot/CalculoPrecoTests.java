@@ -2,6 +2,7 @@ package com.itriad.parkinglot;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -29,7 +30,7 @@ public class CalculoPrecoTests {
             Date entrada = this.sdf.parse("03/11/2019 10:00:00");
             Date saida = this.sdf.parse("03/11/2019 15:00:00");
             assertEquals(12.5D, cPreco.executaCalculo(entrada, saida));
-        } catch (Exception e) {
+        } catch (ParseException e) {
             Assertions.fail("Erro de parse na data");
         };
     }
@@ -41,7 +42,7 @@ public class CalculoPrecoTests {
             Date entrada = this.sdf.parse("07/11/2019 08:00:00");
             Date saida = this.sdf.parse("07/11/2019 12:00:00");
             assertEquals(8D, cPreco.executaCalculo(entrada, saida));
-        } catch (Exception e) {
+        } catch (ParseException e) {
             Assertions.fail("Erro de parse na data");
         };
     }
@@ -53,7 +54,7 @@ public class CalculoPrecoTests {
             Date entrada = this.sdf.parse("07/11/2019 12:00:00");
             Date saida = this.sdf.parse("07/11/2019 18:00:00");
             assertEquals(18D, cPreco.executaCalculo(entrada, saida));
-        } catch (Exception e) {
+        } catch (ParseException e) {
             Assertions.fail("Erro de parse na data");
         };
     }

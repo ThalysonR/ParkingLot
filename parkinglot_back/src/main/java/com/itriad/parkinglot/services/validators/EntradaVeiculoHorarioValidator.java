@@ -11,8 +11,8 @@ public class EntradaVeiculoHorarioValidator extends RegistroVeiculoValidator {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(registro.getEntrada());
         int hour = calendar.get(Calendar.HOUR_OF_DAY);
-        if (hour > 18 && hour < 8) {
-            throw new RuntimeException("Fora do horário de expediente.");
+        if (hour > 18 || hour < 8) {
+            throw new ValidacaoEntradaRegistroException("Fora do horário de expediente.");
         }
     }
 

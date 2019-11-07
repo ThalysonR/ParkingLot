@@ -13,7 +13,7 @@ public class EntradaVeiculoAtivoValidator extends RegistroVeiculoValidator {
     @Override
     protected void valida(RegistroVeiculo registro) {
         if (repository.findRegistroWithActiveVeiculoByPlaca(registro.getVeiculo().getPlaca()) != null) {
-            throw new RuntimeException("Veículo já possui um registro aberto.");
+            throw new ValidacaoEntradaRegistroException("Veículo já possui um registro aberto.");
         }
     }
     
