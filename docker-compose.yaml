@@ -9,6 +9,17 @@ services:
     ports:
      - 8080:8080
 
-  front_builder:
-    image: 'node:lts-alpine'
+  frontend:
+    image: 'node:alpine-lts'
+    volumes:
+     - ./sites-enabled:/etc/nginx/sites-enabled/default
+     - ./parkinglot_front:/app/
+    ports:
+     - 80:80
 
+  front_builder:
+    image: 'nginx:alpine'
+    volumes:
+     - ./parkinglot_front:/app/
+    command: npm i && npm run build
+    context: /app
