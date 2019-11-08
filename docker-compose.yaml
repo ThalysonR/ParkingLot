@@ -22,18 +22,3 @@ services:
     working_dir: /app
     ports:
      - 4200:4200
-
-       #  frontend:
-       #    image: 'nginx:alpine'
-       #    volumes:
-       #     - ./nginx.conf:/etc/nginx/conf.d/default.conf
-       #     - ./parkinglot_front:/app/
-       #    ports:
-       #     - 80:80
-
-       #  front_builder:
-       #    image: 'node:lts-alpine'
-       #    volumes:
-       #     - ./parkinglot_front:/app/
-       #    command: /bin/sh -c "npm i && npm run build"
-       #    working_dir: /app
