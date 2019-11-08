@@ -1,6 +1,7 @@
 package com.itriad.parkinglot;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Random;
 
@@ -38,6 +39,12 @@ public class ParkingLotApplication {
 					repository.save(registro);
 				}
 			}
+
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date());
+			calendar.set(Calendar.HOUR_OF_DAY, calendar.get(Calendar.HOUR_OF_DAY) - 2);
+			RegistroVeiculo registro = new RegistroVeiculo(null, new Veiculo(null, "XYZ7894", "Gol", "Prata"), calendar.getTime(), null, 0d);
+			repository.save(registro);
 		};
 	}
 

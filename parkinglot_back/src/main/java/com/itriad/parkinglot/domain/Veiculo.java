@@ -3,7 +3,7 @@ package com.itriad.parkinglot.domain;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AccessLevel;
@@ -22,10 +22,10 @@ public class Veiculo {
     @GeneratedValue
     @ApiModelProperty(readOnly = true)
     Long id;
-    @NotNull
+    @NotBlank
     String placa;
-    @NotNull
+    @NotBlank
     String modelo;
-    @NotNull
+    @NotBlank
     String cor;
 }

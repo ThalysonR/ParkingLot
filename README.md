@@ -14,6 +14,7 @@ API REST feita em Java. Foram usadas as seguintes tecnologias:
 * Hibernate
 
 É possível acessar a documentação da API (Swagger-ui) através do link http://localhost:8080/swagger-ui.html quando a aplicação está em execução. Foram implementados testes básicos de integração e unitários.
+**Obs.:** Ao iniciar a aplicação são inseridos, automáticamente, dados aleatórios entre as datas de 10/10/2019 e 30/10/2019 para que seja possível a visualização do relatório.
 
 ### Front-end
 
@@ -31,7 +32,7 @@ Aplicação cliente para consumir a API. Foram usadas as seguintes tecnologias:
 Foi disponibilizado um arquivo **docker-compose.yml** contendo os conteiners necessários à execução, já configurados. Para executar a aplicação usando docker, basta executar o compose.
 > docker-compose up
 
-O front-end será executado na porta 80 (http://localhost) e o back-end será executado na porta 8080 (http://localhost:8080).
+O front-end será executado na porta 80 (http://localhost:4200) e o back-end será executado na porta 8080 (http://localhost:8080).
 
 ### Execução Local
 
