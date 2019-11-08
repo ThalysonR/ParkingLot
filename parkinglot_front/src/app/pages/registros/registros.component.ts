@@ -26,29 +26,28 @@ export class RegistrosComponent implements OnInit, OnDestroy {
   }
 
   private removeVeiculo(placa: string, lista: Array<VeiculoModel>) {
-    const index = lista.findIndex(veiculo => veiculo.placa === placa);
-    lista.splice(index);
+    this.veiculos = this.veiculos.filter(veiculo => veiculo.placa !== placa);
   }
 
   ngOnInit() {
     this._registrosService.buscaRegistrosAtivos()
       .subscribe(veiculos => {
-        this.veiculos = veiculos;
+        this.veiculos = veiculos.slice();
         this.veiculosFiltro = this.veiculos.slice();
       });
-
-    this.subscriptions.push(
-      this.busca.valueChanges.subscribe(placa => {
-        placa != ''
+      
+      this.subscriptions.push(
+        this.busca.valueChanges.subscribe(placa => {
+          placa != ''
           ? this.veiculosFiltro = this.veiculos.filter(veiculo => veiculo.placa.toLowerCase().includes(placa.toLowerCase()))
           : this.veiculosFiltro = this.veiculos.slice();
-      })
-    );
-
-    this.subscriptions.push(
-      this._registrosService.listenSaidaVeiculo().subscribe(placa => {
-        this.removeVeiculo(placa, this.veiculos);
-        this.removeVeiculo(placa, this.veiculosFiltro);
+        })
+        );
+        
+        this.subscriptions.push(
+          this._registrosService.listenSaidaVeiculo().subscribe(placa => {
+            this.removeVeiculo(placa, this.veiculos);
+            this.veiculosFiltro = this.veiculos.slice();
       })
     );
   }
