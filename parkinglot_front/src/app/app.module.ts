@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
-import br from '@angular/common/locales/br';
+import pt from '@angular/common/locales/pt';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
@@ -27,7 +27,7 @@ import { VeiculoCardComponent } from './components/veiculo-card/veiculo-card.com
 import { RegistraSaidaDialogComponent } from './components/registra-saida-dialog/registra-saida-dialog.component';
 import { RelatorioComponent } from './pages/relatorio/relatorio.component';
 
-registerLocaleData(br, 'pt-BR');
+registerLocaleData(pt, 'pt');
 
 @NgModule({
   declarations: [

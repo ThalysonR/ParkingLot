@@ -26,6 +26,8 @@ export class RelatorioComponent implements OnInit {
   };
   chartLegend = true;
   chartType = 'bar';
+  totalCarros;
+  totalRecebido;
 
   constructor(private _registrosService: RegistrosService, private _snackBar: MatSnackBar) { }
 
@@ -35,6 +37,8 @@ export class RelatorioComponent implements OnInit {
         this.numeroCarrosChartData = [];
         this.valorRecebidoChartData = [];
         this.chartLabels = [];
+        this.totalCarros = 0;
+        this.totalRecebido = 0;
         const numeroCarros = {
           data: [],
           label: 'Numero de Carros',
@@ -49,6 +53,8 @@ export class RelatorioComponent implements OnInit {
           this.chartLabels.push(relDia.dia);
           numeroCarros.data.push(relDia.numeroCarros)
           valorRecebido.data.push(relDia.valorRecebido)
+          this.totalCarros += relDia.numeroCarros;
+          this.totalRecebido += relDia.valorRecebido;
         });
         this.valorRecebidoChartData.push(valorRecebido);
         this.numeroCarrosChartData.push(numeroCarros);

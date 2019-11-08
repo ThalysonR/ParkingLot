@@ -1,4 +1,4 @@
-package com.itriad.parkinglot;
+package com.itriad.parkinglot.unitario;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

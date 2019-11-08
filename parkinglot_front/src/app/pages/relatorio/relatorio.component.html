@@ -23,6 +23,7 @@
       [legend]="chartLegend"
       [chartType]="chartType">
     </canvas>
+    <div><b>Número Total de Carros: </b> {{ totalCarros }}</div>
     <canvas baseChart
       [datasets]="valorRecebidoChartData"
       [labels]="chartLabels"
@@ -30,5 +31,6 @@
       [legend]="chartLegend"
       [chartType]="chartType">
     </canvas>
+    <div><b>Valor Total Recebido: </b> {{ totalRecebido | currency:'BRL':'symbol-narrow':'1.2-2':'pt' }}</div>
   </div>
 </div>
