@@ -8,8 +8,7 @@ services:
              apk add tzdata &&
              cp /usr/share/zoneinfo/America/Manaus /etc/localtime &&
              echo 'America/Manaus' > /etc/timezone &&
-             mvn spring-boot:run
-             "
+             mvn spring-boot:run"
     working_dir: /app
     ports:
      - 8080:8080
