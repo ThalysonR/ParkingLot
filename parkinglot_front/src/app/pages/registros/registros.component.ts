@@ -26,7 +26,7 @@ export class RegistrosComponent implements OnInit, OnDestroy {
   }
 
   private removeVeiculo(placa: string, lista: Array<VeiculoModel>) {
-    const index = lista.findIndex(veiculo => veiculo.placa == placa);
+    const index = lista.findIndex(veiculo => veiculo.placa === placa);
     lista.splice(index);
   }
 
